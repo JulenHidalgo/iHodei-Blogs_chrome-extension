@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@400&display=swap");
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(to bottom right, #6ba6da, #d7e7fa);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  color: white;
+  text-align: center;
+}
+
+#boton-ayuda {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor del formulario */
+form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Estilo del título */
+h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #044f8b;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  font-family: "Montserrat", sans-serif;
+}
+
+input:focus {
+  outline: none;
+  transform: scale(1.03);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+input[type="file"] {
+  padding: 6px;
+  background: white;
+  color: #043f6c;
+  cursor: pointer;
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #f39c12;
+  opacity: 0.8;
+  color: #00274d;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 183, 3, 0.4);
+  transition: all 0.2s ease-in-out;
+  font-family: "Montserrat", sans-serif;
+}
+
+button:hover {
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(255, 183, 3, 0.6);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.98);
+}
