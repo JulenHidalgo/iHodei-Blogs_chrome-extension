@@ -1,28 +1,40 @@
-document.getElementById("enviar").addEventListener("click", enviarDatos);
-document.getElementById("boton-ayuda").addEventListener("click", () => {
-  window.open("manual_de_uso_creacion_de_usuarios_iHodei_Blogs.pdf", "_blank");
-});
-
 let webhookURL = "";
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Cargar config.json al inicio
+  cargarConfiguracion();
+
+  // Escuchar eventos
+  document.getElementById("enviar").addEventListener("click", enviarDatos);
+  document.getElementById("boton-ayuda").addEventListener("click", () => {
+    window.open(
+      "manual_de_uso_creacion_de_usuarios_iHodei_Blogs.pdf",
+      "_blank"
+    );
+  });
+});
 
 function cargarConfiguracion() {
   fetch(chrome.runtime.getURL("config.json"))
     .then((response) => response.json())
     .then((config) => {
       webhookURL = config.WEBHOOK;
+      console.log("✅ Webhook cargado desde config.json:", webhookURL);
     })
     .catch((error) => {
-      console.error("Error cargando config.json:", error);
+      console.error("❌ Error cargando config.json:", error);
+      alert("No se pudo cargar la configuración del webhook.");
     });
 }
 
-cargarConfiguracion();
-
 function enviarDatos() {
+  console.log("🚨 Se ha llamado a enviarDatos()");
+
   if (!webhookURL) {
-    alert("La configuración no se ha cargado correctamente. Intenta de nuevo.");
+    alert("La configuración del webhook no está cargada.");
     return;
   }
+
   const user = document.getElementById("usuario").value;
   const password = document.getElementById("password").value;
   const url = document.getElementById("url").value;
@@ -53,6 +65,8 @@ function enviarDatos() {
   const reader = new FileReader();
 
   reader.onloadend = function () {
+    console.log("📸 Imagen convertida:", reader.result);
+
     const base64data = reader.result.split(",")[1];
 
     const data = {
@@ -63,6 +77,8 @@ function enviarDatos() {
       metodo: "CREATE_USER",
       api_key: btoa(usuario_wordpress + ":" + password_wordpress),
     };
+
+    console.log("➡️ Enviando a ", webhookURL, data);
 
     const boton = document.getElementById("enviar");
     boton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
@@ -89,7 +105,6 @@ function enviarDatos() {
           document.getElementById("usuario_wordpress").value = "";
           document.getElementById("password_wordpress").value = "";
 
-          // Restaurar el botón después de 3 segundos
           setTimeout(() => {
             boton.innerHTML = "🚀 Enviar Datos";
             boton.disabled = false;
